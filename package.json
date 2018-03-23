@@ -6,19 +6,17 @@
   "author": "Brian Holt <bholtbholt@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn clean-dist && yarn css-build",
+    "build": "yarn clean-dist && yarn parcel build src/index.html",
     "clean-dist": "rm -rf dist/",
-    "css-build": "postcss src/css/index.css -c postcss.config.js -o dist/styles.css",
-    "css-watch": "postcss src/css/index.css -c postcss.config.js -o dist/styles.css -w",
-    "postcss": "node_modules/.bin/postcss",
-    "start": "yarn css-watch"
+    "parcel": "node_modules/.bin/parcel",
+    "start": "parcel src/index.html -p 3000"
   },
   "devDependencies": {
     "autoprefixer": "^8.2.0",
-    "cssnano": "^3.10.0",
-    "postcss-cli": "^5.0.0",
+    "parcel-bundler": "^1.6.2",
     "postcss-import": "^11.1.0",
     "postcss-nested": "^3.0.0",
-    "prettier": "^1.11.1"
+    "prettier": "^1.11.1",
+    "typescript": "^2.7.2"
   }
 }
