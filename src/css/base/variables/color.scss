@@ -1,0 +1,16 @@
+$colors: (
+  'yellow': #f9ca24,
+  'white': #fff
+);
+
+// Use: color('yellow')
+@function color($color) {
+  @if map-has-key($colors, $color) {
+    @return map-get($colors, $color);
+  } @else {
+    @error '`#{$color}` is an invalid argument in color() . Try: #{map-keys($colors)}.';
+  }
+}
+
+// Tokens
+$body-bg: color('yellow');

@@ -1,0 +1,27 @@
+$mobile-font-size: 12px;
+$desktop-font-size: 16px;
+
+$line-height: 1.5;
+
+// These set the text-crop mixin height for consistent baseline
+// See use and more details in text-crop.scss
+$text-crop-top: 6;
+$text-crop-bottom: 6;
+$text-crop-font-size: $desktop-font-size;
+$text-crop-line-height: $line-height;
+
+$font-sizes: (
+  'headline': 3rem,
+  'subhead': 1.618rem,
+  'md': 1rem,
+  'sm': 0.88rem,
+  'xs': 0.75rem
+);
+
+@function font-size($font-size) {
+  @if map-has-key($font-sizes, $font-size) {
+    @return map-get($font-sizes, $font-size);
+  } @else {
+    @error '`#{$font-size}` is an invalid argument in font-size() . Try: #{map-keys($font-sizes)}.';
+  }
+}

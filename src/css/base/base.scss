@@ -1,0 +1,23 @@
+:root {
+  font-size: $mobile-space-size-base;
+
+  @media (breakpoint('desktop')) {
+    font-size: $desktop-space-size-base;
+  }
+}
+
+html {
+  background-color: $body-bg;
+}
+
+body {
+  font-size: $mobile-font-size;
+
+  @media (breakpoint('desktop')) {
+    font-size: $desktop-font-size;
+  }
+}
+
+body * {
+  @include text-crop($line-height);
+}
