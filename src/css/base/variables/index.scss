@@ -1,4 +1,7 @@
-@import './breakpoints';
+// Type must be first, others are alphabetical
 @import './type';
-@import './space';
+@import './breakpoints';
+@import './border';
 @import './color';
+@import './shadow';
+@import './space';

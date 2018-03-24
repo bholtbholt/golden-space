@@ -1,0 +1,18 @@
+$shadow-box: 0 0.1em 0.2em rgba(0, 0, 0, 0.12), 0 0.1em 0.15em rgba(0, 0, 0, 0.24);
+$shadow-box-hover: 0 1em 2em rgba(0, 0, 0, 0.25), 0 0.75em 0.75em rgba(0, 0, 0, 0.22);
+$shadow-text: 0 0.05em 0.05em rgba(0, 0, 0, 0.12), 0 0.025em 0.1em rgba(0, 0, 0, 0.24);
+
+$shadows: (
+  'box': $shadow-box,
+  'box-hover': $shadow-box-hover,
+  'text': $shadow-text
+);
+
+// Use: shadow(), shadow('hover')
+@function shadow($shadow: 'box') {
+  @if map-has-key($shadows, $shadow) {
+    @return map-get($shadows, $shadow);
+  } @else {
+    @error '`#{$shadow}` is an invalid argument in shadow() . Try: #{map-keys($shadows)}.';
+  }
+}

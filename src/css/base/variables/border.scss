@@ -1,0 +1,14 @@
+$borders: (
+  'sm': 0.4rem,
+  'lg': 0.8rem,
+  'round': 50%
+);
+
+// Use: border('sm')
+@function border($size: 'lg') {
+  @if map-has-key($borders, $size) {
+    @return map-get($borders, $size);
+  } @else {
+    @error '`#{$size}` is an invalid argument in border() . Try: #{map-keys($borders)}.';
+  }
+}
