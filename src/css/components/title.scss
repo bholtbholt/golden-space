@@ -1,0 +1,10 @@
+.title {
+  @include text-crop(1);
+  color: color('white');
+  font-size: 5rem;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  text-align: center;
+  text-shadow: shadow('text');
+  text-transform: uppercase;
+}

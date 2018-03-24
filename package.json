@@ -6,7 +6,7 @@
   "author": "Brian Holt <bholtbholt@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn clean-dist && yarn parcel build src/index.html",
+    "build": "parcel build src/index.html",
     "clean-dist": "rm -rf dist/",
     "parcel": "node_modules/.bin/parcel",
     "start": "parcel src/index.html -p 3000"

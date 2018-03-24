@@ -1,0 +1,26 @@
+$card-bg: color('white');
+
+.cards-wrapper {
+  display: flex;
+  align-items: center;
+
+  @media (breakpoint('mobile-only')) {
+    overflow-x: auto;
+  }
+
+  @media (breakpoint('desktop')) {
+    justify-content: center;
+  }
+}
+
+.card {
+  background-color: $card-bg;
+  font-size: font-size('xs');
+  box-shadow: shadow('box');
+  transition: box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  &:hover,
+  &:focus {
+    box-shadow: shadow('box-hover');
+  }
+}

@@ -1,0 +1,44 @@
+$toggle-bg: color('ice');
+$toggle-active: color('ice-dark');
+$toggle-border: color('ice-darker');
+$toggle-border-active: color('ice-darkest');
+$toggle-padding: space('sm');
+
+.toggle {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.toggle__btn {
+  flex: 1 1 auto;
+  text-align: center;
+  padding: $toggle-padding;
+  background-color: $toggle-bg;
+  cursor: pointer;
+  border-bottom: 2px solid $toggle-border;
+
+  &:first-of-type {
+    border-radius: border() 0 0 border();
+  }
+
+  &:last-of-type {
+    border-radius: 0 border() border() 0;
+  }
+
+  @media (breakpoint('desktop')) {
+    flex: 0 0 150px;
+  }
+}
+
+.toggle__radio {
+  display: none;
+}
+
+.toggle__radio:checked + .toggle__btn {
+  $size: 3px;
+
+  background-color: $toggle-active;
+  border-bottom: $size solid $toggle-border-active;
+  padding-bottom: calc(#{$toggle-padding} + #{$size / 2});
+}
