@@ -1,0 +1,96 @@
+// 2xs xs sm md lg xl 2xl
+$margin-size: map-keys($spacing);
+
+// Every direction
+// Use: .m2xs .mxs .msm .mmd .mlg .mxl .m2xl
+@each $size in $margin-size {
+  .m-#{$size} {
+    margin: space($size);
+  }
+}
+
+// Top margins
+// Use: .mt2xs .mtxs .mtsm .mtmd .mtlg .mtxl .mt2xl
+@each $size in $margin-size {
+  .mt-#{$size} {
+    margin-top: space($size);
+  }
+}
+
+// Bottom margins
+// Use: .mb2xs .mbxs .mbsm .mbmd .mblg .mbxl .mb2xl
+@each $size in $margin-size {
+  .mb-#{$size} {
+    margin-bottom: space($size);
+  }
+}
+
+// Left margins
+// Use: .ml2xs .mlxs .mlsm .mlmd .mllg .mlxl .ml2xl
+@each $size in $margin-size {
+  .ml-#{$size} {
+    margin-left: space($size);
+  }
+}
+
+// Right margins
+// Use: .mr2xs .mrxs .mrsm .mrmd .mrlg .mrxl .mr2xl
+@each $size in $margin-size {
+  .mr-#{$size} {
+    margin-right: space($size);
+  }
+}
+
+// Top and Bottom margins
+// Use: .my2xs .myxs .mysm .mymd .mylg .myxl .my2xl
+@each $size in $margin-size {
+  .my-#{$size} {
+    margin-top: space($size);
+    margin-bottom: space($size);
+  }
+}
+
+// Left and right margins
+// Use: .mx2xs .mxxs .mxsm .mxmd .mxlg .mxxl .mx2xl
+@each $size in $margin-size {
+  .mx-#{$size} {
+    margin-left: space($size);
+    margin-right: space($size);
+  }
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Reset margins to 0
+.m-0 {
+  margin: 0;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+.mr-0 {
+  margin-right: 0;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.ml-0 {
+  margin-left: 0;
+}
+
+.my-0 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.mx-0 {
+  margin-right: 0;
+  margin-left: 0;
+}
