@@ -14,6 +14,7 @@ $card-bg: color('white');
 }
 
 .card {
+  text-transform: uppercase;
   background-color: $card-bg;
   font-size: font-size('xs');
   box-shadow: shadow('box');

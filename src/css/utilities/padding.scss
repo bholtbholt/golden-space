@@ -1,8 +1,8 @@
-// 2xs xs sm md lg xl 2xl
+// xxs xs sm md lg xl xxl
 $padding-size: map-keys($spacing);
 
 // Every direction
-// Use: .p2xs .pxs .psm .pmd .plg .pxl .p2xl
+// Use: .p-xxs .p-xs .p-sm .p-md .p-lg .p-xl .p-xxl
 @each $size in $padding-size {
   .p-#{$size} {
     padding: space($size);
@@ -10,7 +10,7 @@ $padding-size: map-keys($spacing);
 }
 
 // Top paddings
-// Use: .pt2xs .ptxs .ptsm .ptmd .ptlg .ptxl .pt2xl
+// Use: .pt-xxs .pt-xs .pt-sm .pt-md .pt-lg .pt-xl .pt-xxl
 @each $size in $padding-size {
   .pt-#{$size} {
     padding-top: space($size);
@@ -18,7 +18,7 @@ $padding-size: map-keys($spacing);
 }
 
 // Bottom paddings
-// Use: .pb2xs .pbxs .pbsm .pbmd .pblg .pbxl .pb2xl
+// Use: .pb-xxs .pb-xs .pb-sm .pb-md .pb-lg .pb-xl .pb-xxl
 @each $size in $padding-size {
   .pb-#{$size} {
     padding-bottom: space($size);
@@ -26,7 +26,7 @@ $padding-size: map-keys($spacing);
 }
 
 // Left paddings
-// Use: .pl2xs .plxs .plsm .plmd .pllg .plxl .pl2xl
+// Use: .pl-xxs .pl-xs .pl-sm .pl-md .pl-lg .pl-xl .pl-xxl
 @each $size in $padding-size {
   .pl-#{$size} {
     padding-left: space($size);
@@ -34,7 +34,7 @@ $padding-size: map-keys($spacing);
 }
 
 // Right paddings
-// Use: .pr2xs .prxs .prsm .prmd .prlg .prxl .pr2xl
+// Use: .pr-xxs .pr-xs .pr-sm .pr-md .pr-lg .pr-xl .pr-xxl
 @each $size in $padding-size {
   .pr-#{$size} {
     padding-right: space($size);
@@ -42,7 +42,7 @@ $padding-size: map-keys($spacing);
 }
 
 // Top and Bottom paddings
-// Use: .py2xs .pyxs .pysm .pymd .pylg .pyxl .py2xl
+// Use: .py-xxs .py-xs .py-sm .py-md .py-lg .py-xl .py-xxl
 @each $size in $padding-size {
   .py-#{$size} {
     padding-top: space($size);
@@ -51,7 +51,7 @@ $padding-size: map-keys($spacing);
 }
 
 // Left and right paddings
-// Use: .px2xs .pxxs .pxsm .pxmd .pxlg .pxxl .px2xl
+// Use: .px-xxs .px-xs .px-sm .px-md .px-lg .px-xl .px-xxl
 @each $size in $padding-size {
   .px-#{$size} {
     padding-left: space($size);
