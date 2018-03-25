@@ -72,7 +72,7 @@ test('[linearScaleComputed] returns a linear scale', () => {
     xxl: 28,
   };
 
-  expect(linearScaleComputed(16)).toEqual(expectedResult);
+  expect(linearScaleComputed(16, 0.25)).toEqual(expectedResult);
 });
 
 test('[linearScaleRelative] returns a relative linear scale', () => {
@@ -86,5 +86,5 @@ test('[linearScaleRelative] returns a relative linear scale', () => {
     xxl: 1.75,
   };
 
-  expect(linearScaleRelative(16)).toEqual(expectedResult);
+  expect(linearScaleRelative(16, 0.25)).toEqual(expectedResult);
 });

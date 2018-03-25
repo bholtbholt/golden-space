@@ -1,14 +1,14 @@
 import { Scale } from './types';
-import {
-  exponentialScaleComputed,
-  exponentialScaleRelative,
-  linearScaleComputed,
-  linearScaleRelative,
-} from './scale';
+import { exponentialScaleComputed, exponentialScaleRelative } from './scale';
 
 (() => {
   const domRoot = document.documentElement;
   const spaceSize = parseInt(getComputedStyle(domRoot).getPropertyValue(`--desktop-font-size`));
+
+  const relativeDisplayNodes = document.querySelectorAll('[data-behavior~="get-relative-size"]');
+  const computedDisplayNodes = document.querySelectorAll('[data-behavior~="get-actual-size"]');
+  const relativeDisplayElements = Array.from(relativeDisplayNodes);
+  const computedDisplayElements = Array.from(computedDisplayNodes);
 
   function updateCustomProperties(scale: Scale) {
     Object.keys(scale).map(key => {
@@ -16,23 +16,22 @@ import {
     });
   }
 
-  function toggleLinear(event) {
-    updateCustomProperties(linearScaleRelative(spaceSize));
-    console.log('linear relative', linearScaleRelative(spaceSize));
-    console.log('linear computed', linearScaleComputed(spaceSize));
+  function updateDisplaySizes(scale: Scale, elements: any[], units: string) {
+    elements.map(element => {
+      const size = element.dataset.scale;
+      element.innerHTML = scale[size] + units;
+    });
   }
 
   function toggleScale(event) {
     const ratio = event.target.value;
-    updateCustomProperties(exponentialScaleRelative(spaceSize, ratio));
-    console.log('exponential relative', exponentialScaleRelative(spaceSize, ratio));
-    console.log('exponential computed', exponentialScaleComputed(spaceSize, ratio));
-  }
+    const relativeScale = exponentialScaleRelative(spaceSize, ratio);
+    const computedScale = exponentialScaleComputed(spaceSize, ratio);
 
-  // Bindings
-  document
-    .querySelector('[data-behavior~="toggle-linear"]')
-    .addEventListener('change', toggleLinear);
+    updateCustomProperties(relativeScale);
+    updateDisplaySizes(relativeScale, relativeDisplayElements, ' rem');
+    updateDisplaySizes(computedScale, computedDisplayElements, ' px');
+  }
 
   Array.from(document.querySelectorAll('[data-behavior~="get-new-scale"]')).map(input => {
     input.addEventListener('change', toggleScale);

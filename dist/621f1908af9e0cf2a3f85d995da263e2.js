@@ -116,8 +116,8 @@ function exponentialScaleRelative(base, ratio) {
     };
 }
 exports.exponentialScaleRelative = exponentialScaleRelative;
-function linearScaleComputed(base) {
-    var distance = base * 0.25;
+function linearScaleComputed(base, ratio) {
+    var distance = base * ratio;
     var md = base;
     var sm = md - distance;
     var xs = sm - distance;
@@ -136,8 +136,7 @@ function linearScaleComputed(base) {
     };
 }
 exports.linearScaleComputed = linearScaleComputed;
-function linearScaleRelative(base) {
-    var distance = 0.25;
+function linearScaleRelative(base, distance) {
     var md = base / base;
     var sm = md - distance;
     var xs = sm - distance;
@@ -164,29 +163,34 @@ var scale_1 = require("./scale");
 (function () {
     var domRoot = document.documentElement;
     var spaceSize = parseInt(getComputedStyle(domRoot).getPropertyValue("--desktop-font-size"));
+    var relativeDisplayNodes = document.querySelectorAll('[data-behavior~="get-relative-size"]');
+    var computedDisplayNodes = document.querySelectorAll('[data-behavior~="get-actual-size"]');
+    var relativeDisplayElements = Array.from(relativeDisplayNodes);
+    var computedDisplayElements = Array.from(computedDisplayNodes);
     function updateCustomProperties(scale) {
         Object.keys(scale).map(function (key) {
             domRoot.style.setProperty("--space-" + key, scale[key] + "rem");
         });
     }
-    function toggleLinear(event) {
-        updateCustomProperties(scale_1.linearScaleRelative(spaceSize));
-        console.log('linear relative', scale_1.linearScaleRelative(spaceSize));
-        console.log('linear computed', scale_1.linearScaleComputed(spaceSize));
+    function updateDisplaySizes(scale, elements, units) {
+        elements.map(function (element) {
+            var size = element.dataset.scale;
+            element.innerHTML = scale[size] + units;
+        });
     }
     function toggleScale(event) {
         var ratio = event.target.value;
-        updateCustomProperties(scale_1.exponentialScaleRelative(spaceSize, ratio));
-        console.log('exponential relative', scale_1.exponentialScaleRelative(spaceSize, ratio));
-        console.log('exponential computed', scale_1.exponentialScaleComputed(spaceSize, ratio));
+        var relativeScale = scale_1.exponentialScaleRelative(spaceSize, ratio);
+        var computedScale = scale_1.exponentialScaleComputed(spaceSize, ratio);
+        updateCustomProperties(relativeScale);
+        updateDisplaySizes(relativeScale, relativeDisplayElements, ' rem');
+        updateDisplaySizes(computedScale, computedDisplayElements, ' px');
     }
-    // Bindings
-    document.querySelector('[data-behavior~="toggle-linear"]').addEventListener('change', toggleLinear);
     Array.from(document.querySelectorAll('[data-behavior~="get-new-scale"]')).map(function (input) {
         input.addEventListener('change', toggleScale);
     });
 })();
-},{"./scale":7}],9:[function(require,module,exports) {
+},{"./scale":7}],13:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -208,7 +212,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '61515' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '61581' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -309,5 +313,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[9,3])
+},{}]},{},[13,3])
 //# sourceMappingURL=/dist/621f1908af9e0cf2a3f85d995da263e2.map

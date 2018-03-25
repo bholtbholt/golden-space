@@ -44,8 +44,8 @@ function exponentialScaleRelative(base: number, ratio: number): Scale {
   };
 }
 
-function linearScaleComputed(base: number): Scale {
-  const distance = base * 0.25;
+function linearScaleComputed(base: number, ratio: number): Scale {
+  const distance = base * ratio;
   const md = base;
   const sm = md - distance;
   const xs = sm - distance;
@@ -65,8 +65,7 @@ function linearScaleComputed(base: number): Scale {
   };
 }
 
-function linearScaleRelative(base: number): Scale {
-  const distance = 0.25;
+function linearScaleRelative(base: number, distance: number): Scale {
   const md = base / base;
   const sm = md - distance;
   const xs = sm - distance;

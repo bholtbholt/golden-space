@@ -33,3 +33,8 @@
   letter-spacing: -0.025em;
   text-transform: uppercase;
 }
+
+.card__relative-size,
+.card__actual-size {
+  font-size: font-size('xs');
+}
