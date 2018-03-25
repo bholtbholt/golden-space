@@ -71,55 +71,14 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({4:[function(require,module,exports) {
+})({7:[function(require,module,exports) {
 "use strict";
 
 exports.__esModule = true;
 function roundDecimals(num) {
     return Math.round(num * 100) / 100;
 }
-function exponentialScaleComputed(base) {
-    var ratio = 2;
-    var lg = base;
-    var md = roundDecimals(lg / ratio);
-    var sm = roundDecimals(md / ratio);
-    var xs = roundDecimals(sm / ratio);
-    var xxs = roundDecimals(xs / ratio);
-    var xl = roundDecimals(lg * ratio);
-    var xxl = roundDecimals(xl * ratio);
-    return {
-        xxs: xxs,
-        xs: xs,
-        sm: sm,
-        md: md,
-        lg: lg,
-        xl: xl,
-        xxl: xxl
-    };
-}
-exports.exponentialScaleComputed = exponentialScaleComputed;
-function exponentialScaleRelative(base) {
-    var ratio = 2;
-    var lg = base / base;
-    var md = roundDecimals(lg / ratio);
-    var sm = roundDecimals(md / ratio);
-    var xs = roundDecimals(sm / ratio);
-    var xxs = roundDecimals(xs / ratio);
-    var xl = roundDecimals(lg * ratio);
-    var xxl = roundDecimals(xl * ratio);
-    return {
-        xxs: xxs,
-        xs: xs,
-        sm: sm,
-        md: md,
-        lg: lg,
-        xl: xl,
-        xxl: xxl
-    };
-}
-exports.exponentialScaleRelative = exponentialScaleRelative;
-function goldenScaleComputed(base) {
-    var ratio = 1.618;
+function exponentialScaleComputed(base, ratio) {
     var md = base;
     var sm = roundDecimals(md / ratio);
     var xs = roundDecimals(sm / ratio);
@@ -137,9 +96,8 @@ function goldenScaleComputed(base) {
         xxl: xxl
     };
 }
-exports.goldenScaleComputed = goldenScaleComputed;
-function goldenScaleRelative(base) {
-    var ratio = 1.618;
+exports.exponentialScaleComputed = exponentialScaleComputed;
+function exponentialScaleRelative(base, ratio) {
     var md = base / base;
     var sm = roundDecimals(md / ratio);
     var xs = roundDecimals(sm / ratio);
@@ -157,7 +115,7 @@ function goldenScaleRelative(base) {
         xxl: xxl
     };
 }
-exports.goldenScaleRelative = goldenScaleRelative;
+exports.exponentialScaleRelative = exponentialScaleRelative;
 function linearScaleComputed(base) {
     var distance = base * 0.25;
     var md = base;
@@ -216,22 +174,19 @@ var scale_1 = require("./scale");
         console.log('linear relative', scale_1.linearScaleRelative(spaceSize));
         console.log('linear computed', scale_1.linearScaleComputed(spaceSize));
     }
-    function toggleGolden(event) {
-        updateCustomProperties(scale_1.goldenScaleRelative(spaceSize));
-        console.log('golden relative', scale_1.goldenScaleRelative(spaceSize));
-        console.log('golden computed', scale_1.goldenScaleComputed(spaceSize));
-    }
-    function toggleExponential(event) {
-        updateCustomProperties(scale_1.exponentialScaleRelative(spaceSize));
-        console.log('exponential relative', scale_1.exponentialScaleRelative(spaceSize));
-        console.log('exponential computed', scale_1.exponentialScaleComputed(spaceSize));
+    function toggleScale(event) {
+        var ratio = event.target.value;
+        updateCustomProperties(scale_1.exponentialScaleRelative(spaceSize, ratio));
+        console.log('exponential relative', scale_1.exponentialScaleRelative(spaceSize, ratio));
+        console.log('exponential computed', scale_1.exponentialScaleComputed(spaceSize, ratio));
     }
     // Bindings
     document.querySelector('[data-behavior~="toggle-linear"]').addEventListener('change', toggleLinear);
-    document.querySelector('[data-behavior~="toggle-golden"]').addEventListener('change', toggleGolden);
-    document.querySelector('[data-behavior~="toggle-exponential"]').addEventListener('change', toggleExponential);
+    Array.from(document.querySelectorAll('[data-behavior~="get-new-scale"]')).map(function (input) {
+        input.addEventListener('change', toggleScale);
+    });
 })();
-},{"./scale":4}],8:[function(require,module,exports) {
+},{"./scale":7}],9:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -253,7 +208,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '61174' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '61515' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -354,5 +309,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[8,3])
+},{}]},{},[9,3])
 //# sourceMappingURL=/dist/621f1908af9e0cf2a3f85d995da263e2.map

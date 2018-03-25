@@ -4,50 +4,7 @@ function roundDecimals(num: number): number {
   return Math.round(num * 100) / 100;
 }
 
-function exponentialScaleComputed(base: number): Scale {
-  const ratio = 2;
-  const lg = base;
-  const md = roundDecimals(lg / ratio);
-  const sm = roundDecimals(md / ratio);
-  const xs = roundDecimals(sm / ratio);
-  const xxs = roundDecimals(xs / ratio);
-  const xl = roundDecimals(lg * ratio);
-  const xxl = roundDecimals(xl * ratio);
-
-  return {
-    xxs,
-    xs,
-    sm,
-    md,
-    lg,
-    xl,
-    xxl,
-  };
-}
-
-function exponentialScaleRelative(base: number): Scale {
-  const ratio = 2;
-  const lg = base / base;
-  const md = roundDecimals(lg / ratio);
-  const sm = roundDecimals(md / ratio);
-  const xs = roundDecimals(sm / ratio);
-  const xxs = roundDecimals(xs / ratio);
-  const xl = roundDecimals(lg * ratio);
-  const xxl = roundDecimals(xl * ratio);
-
-  return {
-    xxs,
-    xs,
-    sm,
-    md,
-    lg,
-    xl,
-    xxl,
-  };
-}
-
-function goldenScaleComputed(base: number): Scale {
-  const ratio = 1.618;
+function exponentialScaleComputed(base: number, ratio: number): Scale {
   const md = base;
   const sm = roundDecimals(md / ratio);
   const xs = roundDecimals(sm / ratio);
@@ -67,8 +24,7 @@ function goldenScaleComputed(base: number): Scale {
   };
 }
 
-function goldenScaleRelative(base: number): Scale {
-  const ratio = 1.618;
+function exponentialScaleRelative(base: number, ratio: number): Scale {
   const md = base / base;
   const sm = roundDecimals(md / ratio);
   const xs = roundDecimals(sm / ratio);
@@ -133,8 +89,6 @@ function linearScaleRelative(base: number): Scale {
 export {
   exponentialScaleComputed,
   exponentialScaleRelative,
-  goldenScaleComputed,
-  goldenScaleRelative,
   linearScaleComputed,
   linearScaleRelative,
 };

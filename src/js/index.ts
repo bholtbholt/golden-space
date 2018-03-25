@@ -2,8 +2,6 @@ import { Scale } from './types';
 import {
   exponentialScaleComputed,
   exponentialScaleRelative,
-  goldenScaleComputed,
-  goldenScaleRelative,
   linearScaleComputed,
   linearScaleRelative,
 } from './scale';
@@ -24,20 +22,19 @@ import {
     console.log('linear computed', linearScaleComputed(spaceSize));
   }
 
-  function toggleGolden(event) {
-    updateCustomProperties(goldenScaleRelative(spaceSize));
-    console.log('golden relative', goldenScaleRelative(spaceSize));
-    console.log('golden computed', goldenScaleComputed(spaceSize));
-  }
-
-  function toggleExponential(event) {
-    updateCustomProperties(exponentialScaleRelative(spaceSize));
-    console.log('exponential relative', exponentialScaleRelative(spaceSize));
-    console.log('exponential computed', exponentialScaleComputed(spaceSize));
+  function toggleScale(event) {
+    const ratio = event.target.value;
+    updateCustomProperties(exponentialScaleRelative(spaceSize, ratio));
+    console.log('exponential relative', exponentialScaleRelative(spaceSize, ratio));
+    console.log('exponential computed', exponentialScaleComputed(spaceSize, ratio));
   }
 
   // Bindings
-  document.querySelector('[data-behavior~="toggle-linear"]').addEventListener('change', toggleLinear);
-  document.querySelector('[data-behavior~="toggle-golden"]').addEventListener('change', toggleGolden);
-  document.querySelector('[data-behavior~="toggle-exponential"]').addEventListener('change', toggleExponential);
+  document
+    .querySelector('[data-behavior~="toggle-linear"]')
+    .addEventListener('change', toggleLinear);
+
+  Array.from(document.querySelectorAll('[data-behavior~="get-new-scale"]')).map(input => {
+    input.addEventListener('change', toggleScale);
+  });
 })();

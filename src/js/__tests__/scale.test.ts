@@ -1,41 +1,39 @@
 import {
   exponentialScaleComputed,
   exponentialScaleRelative,
-  goldenScaleComputed,
-  goldenScaleRelative,
   linearScaleComputed,
   linearScaleRelative,
 } from '../scale';
 
 test('[exponentialScaleComputed] returns an exponential scale', () => {
   const expectedResult = {
-    xxs: 1,
-    xs: 2,
-    sm: 4,
-    md: 8,
-    lg: 16,
-    xl: 32,
-    xxl: 64,
+    xxs: 2,
+    xs: 4,
+    sm: 8,
+    md: 16,
+    lg: 32,
+    xl: 64,
+    xxl: 128,
   };
 
-  expect(exponentialScaleComputed(16)).toEqual(expectedResult);
+  expect(exponentialScaleComputed(16, 2)).toEqual(expectedResult);
 });
 
 test('[exponentialScaleRelative] returns a relative exponential scale', () => {
   const expectedResult = {
-    xxs: 0.07,
-    xs: 0.13,
-    sm: 0.25,
-    md: 0.5,
-    lg: 1,
-    xl: 2,
-    xxl: 4,
+    xxs: 0.13,
+    xs: 0.25,
+    sm: 0.5,
+    md: 1,
+    lg: 2,
+    xl: 4,
+    xxl: 8,
   };
 
-  expect(exponentialScaleRelative(16)).toEqual(expectedResult);
+  expect(exponentialScaleRelative(16, 2)).toEqual(expectedResult);
 });
 
-test('[goldenScaleComputed] returns a golden ratio scale', () => {
+test('[exponentialScaleComputed] returns a golden ratio scale', () => {
   const expectedResult = {
     xxs: 3.78,
     xs: 6.11,
@@ -46,10 +44,10 @@ test('[goldenScaleComputed] returns a golden ratio scale', () => {
     xxl: 67.78,
   };
 
-  expect(goldenScaleComputed(16)).toEqual(expectedResult);
+  expect(exponentialScaleComputed(16, 1.618)).toEqual(expectedResult);
 });
 
-test('[goldenScaleRelative] returns a relative golden ratio scale', () => {
+test('[exponentialScaleRelative] returns a relative golden ratio scale', () => {
   const expectedResult = {
     xxs: 0.23,
     xs: 0.38,
@@ -60,7 +58,7 @@ test('[goldenScaleRelative] returns a relative golden ratio scale', () => {
     xxl: 4.24,
   };
 
-  expect(goldenScaleRelative(16)).toEqual(expectedResult);
+  expect(exponentialScaleRelative(16, 1.618)).toEqual(expectedResult);
 });
 
 test('[linearScaleComputed] returns a linear scale', () => {
