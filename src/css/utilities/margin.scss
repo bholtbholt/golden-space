@@ -1,9 +1,6 @@
-// xxs xs sm md lg xl xxl
-$margin-size: map-keys($spacing);
-
 // Every direction
 // Use: .m-xxs .m-xs .m-sm .m-md .m-lg .m-xl .m-xxl
-@each $size in $margin-size {
+@each $size in map-keys($spacing) {
   .m-#{$size} {
     margin: space($size);
   }
@@ -11,7 +8,7 @@ $margin-size: map-keys($spacing);
 
 // Top margins
 // Use: .mt-xxs .mt-xs .mt-sm .mt-md .mt-lg .mt-xl .mt-xxl
-@each $size in $margin-size {
+@each $size in map-keys($spacing) {
   .mt-#{$size} {
     margin-top: space($size);
   }
@@ -19,7 +16,7 @@ $margin-size: map-keys($spacing);
 
 // Bottom margins
 // Use: .mb-xxs .mb-xs .mb-sm .mb-md .mb-lg .mb-xl .mb-xxl
-@each $size in $margin-size {
+@each $size in map-keys($spacing) {
   .mb-#{$size} {
     margin-bottom: space($size);
   }
@@ -27,7 +24,7 @@ $margin-size: map-keys($spacing);
 
 // Left margins
 // Use: .ml-xxs .ml-xs .ml-sm .ml-md .ml-lg .ml-xl .ml-xxl
-@each $size in $margin-size {
+@each $size in map-keys($spacing) {
   .ml-#{$size} {
     margin-left: space($size);
   }
@@ -35,7 +32,7 @@ $margin-size: map-keys($spacing);
 
 // Right margins
 // Use: .mr-xxs .mr-xs .mr-sm .mr-md .mr-lg .mr-xl .mr-xxl
-@each $size in $margin-size {
+@each $size in map-keys($spacing) {
   .mr-#{$size} {
     margin-right: space($size);
   }
@@ -43,7 +40,7 @@ $margin-size: map-keys($spacing);
 
 // Top and Bottom margins
 // Use: .my-xxs .my-xs .my-sm .my-md .my-lg .my-xl .my-xxl
-@each $size in $margin-size {
+@each $size in map-keys($spacing) {
   .my-#{$size} {
     margin-top: space($size);
     margin-bottom: space($size);
@@ -52,7 +49,7 @@ $margin-size: map-keys($spacing);
 
 // Left and right margins
 // Use: .mx-xxs .mx-xs .mx-sm .mx-md .mx-lg .mx-xl .mx-xxl
-@each $size in $margin-size {
+@each $size in map-keys($spacing) {
   .mx-#{$size} {
     margin-left: space($size);
     margin-right: space($size);
