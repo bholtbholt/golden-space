@@ -1,0 +1,95 @@
+// Every direction
+// Use: .b-xxs .b-xs .b-sm .b-md .b-lg .b-xl .b-xxl
+@each $size in map-keys($spacing) {
+  .b-#{$size} {
+    border-width: space($size);
+    border-style: solid;
+  }
+}
+
+// Top borders
+// Use: .bt-xxs .bt-xs .bt-sm .bt-md .bt-lg .bt-xl .bt-xxl
+@each $size in map-keys($spacing) {
+  .bt-#{$size} {
+    border-top-width: space($size);
+    border-style: solid;
+  }
+}
+
+// Bottom borders
+// Use: .bb-xxs .bb-xs .bb-sm .bb-md .bb-lg .bb-xl .bb-xxl
+@each $size in map-keys($spacing) {
+  .bb-#{$size} {
+    border-bottom-width: space($size);
+    border-style: solid;
+  }
+}
+
+// Left borders
+// Use: .bl-xxs .bl-xs .bl-sm .bl-md .bl-lg .bl-xl .bl-xxl
+@each $size in map-keys($spacing) {
+  .bl-#{$size} {
+    border-left-width: space($size);
+    border-style: solid;
+  }
+}
+
+// Right borders
+// Use: .br-xxs .br-xs .br-sm .br-md .br-lg .br-xl .br-xxl
+@each $size in map-keys($spacing) {
+  .br-#{$size} {
+    border-right-width: space($size);
+    border-style: solid;
+  }
+}
+
+// Top and Bottom borders
+// Use: .by-xxs .by-xs .by-sm .by-md .by-lg .by-xl .by-xxl
+@each $size in map-keys($spacing) {
+  .by-#{$size} {
+    border-top-width: space($size);
+    border-bottom-width: space($size);
+    border-style: solid;
+  }
+}
+
+// Left and right borders
+// Use: .bx-xxs .bx-xs .bx-sm .bx-md .bx-lg .bx-xl .bx-xxl
+@each $size in map-keys($spacing) {
+  .bx-#{$size} {
+    border-left-width: space($size);
+    border-right-width: space($size);
+    border-style: solid;
+  }
+}
+
+// Reset borders to 0
+.b-0 {
+  border: 0;
+}
+
+.bt-0 {
+  border-top: 0;
+}
+
+.br-0 {
+  border-right: 0;
+}
+
+.bb-0 {
+  border-bottom: 0;
+}
+
+.bl-0 {
+  border-left: 0;
+}
+
+.by-0 {
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.bx-0 {
+  border-right: 0;
+  border-left: 0;
+}

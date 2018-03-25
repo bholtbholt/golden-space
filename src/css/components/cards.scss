@@ -1,8 +1,6 @@
-$card-bg: color('white');
-
 .cards-wrapper {
+  align-items: flex-start;
   display: flex;
-  align-items: center;
   overflow-x: auto;
 
   @media (breakpoint('desktop')) {
@@ -11,9 +9,16 @@ $card-bg: color('white');
 }
 
 .card {
-  text-transform: uppercase;
+  $card-bg: color('white');
+  $border-color: color('purple');
+
+  border: 0;
+  list-style: none;
+  padding-left: 0;
+
+  flex: 0 0 auto;
   background-color: $card-bg;
-  font-size: font-size('xs');
+  border-color: $border-color;
   box-shadow: shadow('box');
   transition: box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
@@ -21,4 +26,10 @@ $card-bg: color('white');
   &:focus {
     box-shadow: shadow('box-hover');
   }
+}
+
+.card__name {
+  font-weight: bold;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
 }
