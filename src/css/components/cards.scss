@@ -3,10 +3,7 @@ $card-bg: color('white');
 .cards-wrapper {
   display: flex;
   align-items: center;
-
-  @media (breakpoint('mobile-only')) {
-    overflow-x: auto;
-  }
+  overflow-x: auto;
 
   @media (breakpoint('desktop')) {
     justify-content: center;

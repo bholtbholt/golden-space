@@ -71,12 +71,167 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({6:[function(require,module,exports) {
-console.log('hello world');
-// getComputedStyle(document.documentElement).getPropertyValue('--space-xl')
-// document.documentElement.style.setProperty('--space-xl', '6rem')
-// http://vanseodesign.com/css/custom-properties-and-javascript/
-},{}],12:[function(require,module,exports) {
+})({4:[function(require,module,exports) {
+"use strict";
+
+exports.__esModule = true;
+function roundDecimals(num) {
+    return Math.round(num * 100) / 100;
+}
+function exponentialScaleComputed(base) {
+    var ratio = 2;
+    var lg = base;
+    var md = roundDecimals(lg / ratio);
+    var sm = roundDecimals(md / ratio);
+    var xs = roundDecimals(sm / ratio);
+    var xxs = roundDecimals(xs / ratio);
+    var xl = roundDecimals(lg * ratio);
+    var xxl = roundDecimals(xl * ratio);
+    return {
+        xxs: xxs,
+        xs: xs,
+        sm: sm,
+        md: md,
+        lg: lg,
+        xl: xl,
+        xxl: xxl
+    };
+}
+exports.exponentialScaleComputed = exponentialScaleComputed;
+function exponentialScaleRelative(base) {
+    var ratio = 2;
+    var lg = base / base;
+    var md = roundDecimals(lg / ratio);
+    var sm = roundDecimals(md / ratio);
+    var xs = roundDecimals(sm / ratio);
+    var xxs = roundDecimals(xs / ratio);
+    var xl = roundDecimals(lg * ratio);
+    var xxl = roundDecimals(xl * ratio);
+    return {
+        xxs: xxs,
+        xs: xs,
+        sm: sm,
+        md: md,
+        lg: lg,
+        xl: xl,
+        xxl: xxl
+    };
+}
+exports.exponentialScaleRelative = exponentialScaleRelative;
+function goldenScaleComputed(base) {
+    var ratio = 1.618;
+    var md = base;
+    var sm = roundDecimals(md / ratio);
+    var xs = roundDecimals(sm / ratio);
+    var xxs = roundDecimals(xs / ratio);
+    var lg = roundDecimals(md * ratio);
+    var xl = roundDecimals(lg * ratio);
+    var xxl = roundDecimals(xl * ratio);
+    return {
+        xxs: xxs,
+        xs: xs,
+        sm: sm,
+        md: md,
+        lg: lg,
+        xl: xl,
+        xxl: xxl
+    };
+}
+exports.goldenScaleComputed = goldenScaleComputed;
+function goldenScaleRelative(base) {
+    var ratio = 1.618;
+    var md = base / base;
+    var sm = roundDecimals(md / ratio);
+    var xs = roundDecimals(sm / ratio);
+    var xxs = roundDecimals(xs / ratio);
+    var lg = roundDecimals(md * ratio);
+    var xl = roundDecimals(lg * ratio);
+    var xxl = roundDecimals(xl * ratio);
+    return {
+        xxs: xxs,
+        xs: xs,
+        sm: sm,
+        md: md,
+        lg: lg,
+        xl: xl,
+        xxl: xxl
+    };
+}
+exports.goldenScaleRelative = goldenScaleRelative;
+function linearScaleComputed(base) {
+    var distance = base * 0.25;
+    var md = base;
+    var sm = md - distance;
+    var xs = sm - distance;
+    var xxs = xs - distance;
+    var lg = md + distance;
+    var xl = lg + distance;
+    var xxl = xl + distance;
+    return {
+        xxs: xxs,
+        xs: xs,
+        sm: sm,
+        md: md,
+        lg: lg,
+        xl: xl,
+        xxl: xxl
+    };
+}
+exports.linearScaleComputed = linearScaleComputed;
+function linearScaleRelative(base) {
+    var distance = 0.25;
+    var md = base / base;
+    var sm = md - distance;
+    var xs = sm - distance;
+    var xxs = xs - distance;
+    var lg = md + distance;
+    var xl = lg + distance;
+    var xxl = xl + distance;
+    return {
+        xxs: xxs,
+        xs: xs,
+        sm: sm,
+        md: md,
+        lg: lg,
+        xl: xl,
+        xxl: xxl
+    };
+}
+exports.linearScaleRelative = linearScaleRelative;
+},{}],3:[function(require,module,exports) {
+"use strict";
+
+exports.__esModule = true;
+var scale_1 = require("./scale");
+(function () {
+    var domRoot = document.documentElement;
+    var spaceSize = parseInt(getComputedStyle(domRoot).getPropertyValue("--desktop-font-size"));
+    function updateCustomProperties(scale) {
+        Object.keys(scale).map(function (key) {
+            domRoot.style.setProperty("--space-" + key, scale[key] + "rem");
+        });
+    }
+    function toggleLinear(event) {
+        updateCustomProperties(scale_1.linearScaleRelative(spaceSize));
+        console.log('linear relative', scale_1.linearScaleRelative(spaceSize));
+        console.log('linear computed', scale_1.linearScaleComputed(spaceSize));
+    }
+    function toggleGolden(event) {
+        updateCustomProperties(scale_1.goldenScaleRelative(spaceSize));
+        console.log('golden relative', scale_1.goldenScaleRelative(spaceSize));
+        console.log('golden computed', scale_1.goldenScaleComputed(spaceSize));
+    }
+    function toggleExponential(event) {
+        updateCustomProperties(scale_1.exponentialScaleRelative(spaceSize));
+        console.log('exponential relative', scale_1.exponentialScaleRelative(spaceSize));
+        console.log('exponential computed', scale_1.exponentialScaleComputed(spaceSize));
+    }
+    // Bindings
+    document.querySelector('[data-behavior~="toggle-linear"]').addEventListener('change', toggleLinear);
+    document.querySelector('[data-behavior~="toggle-golden"]').addEventListener('change', toggleGolden);
+    document.querySelector('[data-behavior~="toggle-exponential"]').addEventListener('change', toggleExponential);
+})();
+},{"./scale":4}],12:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -98,7 +253,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '59293' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '60790' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -199,5 +354,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[12,6])
+},{}]},{},[12,3])
 //# sourceMappingURL=/dist/621f1908af9e0cf2a3f85d995da263e2.map

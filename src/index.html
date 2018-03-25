@@ -12,25 +12,25 @@
 <body>
   <h1 class="title mb-xxl">Golden Space</h1>
 
-  <div class="toggle mx-auto">
-    <input class="toggle__radio" id="ratio-linear" type="radio" name="ratio" value="linear" data-distance=".25">
+  <form class="toggle mx-auto">
+    <input class="toggle__radio" id="ratio-linear" type="radio" name="ratio" value="linear" data-behavior="toggle-linear">
     <label class="toggle__btn" for="ratio-linear">Linear</label>
 
-    <input class="toggle__radio" id="ratio-golden" type="radio" name="ratio" value="golden" checked data-ratio="1.618">
+    <input class="toggle__radio" id="ratio-golden" type="radio" name="ratio" value="golden" checked data-behavior="toggle-golden">
     <label class="toggle__btn" for="ratio-golden">Golden Ratio</label>
 
-    <input class="toggle__radio" id="ratio-exponential" type="radio" name="ratio" value="exponential" data-ratio="2">
+    <input class="toggle__radio" id="ratio-exponential" type="radio" name="ratio" value="exponential" data-behavior="toggle-exponential">
     <label class="toggle__btn" for="ratio-exponential">Exponential</label>
-  </div>
+  </form>
 
   <div class="cards-wrapper mx-auto">
-    <div class="card p-xxs m-xxs">xxs</div>
-    <div class="card p-xs m-xs">xs</div>
-    <div class="card p-sm m-sm">sm</div>
-    <div class="card p-md m-md">md</div>
-    <div class="card p-lg m-lg">lg</div>
-    <div class="card p-xl m-xl">xl</div>
-    <div class="card p-xxl m-xxl">xxl</div>
+    <div class="card p-xxl m-xxl"></div>
+    <div class="card p-xl m-xl"></div>
+    <div class="card p-lg m-lg"></div>
+    <div class="card p-md m-md"></div>
+    <div class="card p-sm m-sm"></div>
+    <div class="card p-xs m-xs"></div>
+    <div class="card p-xxs m-xxs"></div>
   </div>
   <script src="./js/index.ts"></script>
 </body>
