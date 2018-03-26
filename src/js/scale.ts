@@ -4,7 +4,7 @@ function roundDecimals(num: number): number {
   return Math.round(num * 100) / 100;
 }
 
-function exponentialScaleComputed(base: number, ratio: number): Scale {
+function exponentialScaleAbsolute(base: number, ratio: number): Scale {
   const md = base;
   const sm = roundDecimals(md / ratio);
   const xs = roundDecimals(sm / ratio);
@@ -44,7 +44,7 @@ function exponentialScaleRelative(base: number, ratio: number): Scale {
   };
 }
 
-function linearScaleComputed(base: number, ratio: number): Scale {
+function linearScaleAbsolute(base: number, ratio: number): Scale {
   const distance = base * ratio;
   const md = base;
   const sm = md - distance;
@@ -86,8 +86,8 @@ function linearScaleRelative(base: number, distance: number): Scale {
 }
 
 export {
-  exponentialScaleComputed,
+  exponentialScaleAbsolute,
   exponentialScaleRelative,
-  linearScaleComputed,
+  linearScaleAbsolute,
   linearScaleRelative,
 };

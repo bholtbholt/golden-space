@@ -1,11 +1,11 @@
 import {
-  exponentialScaleComputed,
+  exponentialScaleAbsolute,
   exponentialScaleRelative,
-  linearScaleComputed,
+  linearScaleAbsolute,
   linearScaleRelative,
 } from '../scale';
 
-test('[exponentialScaleComputed] returns an exponential scale', () => {
+test('[exponentialScaleAbsolute] returns an exponential scale', () => {
   const expectedResult = {
     xxs: 2,
     xs: 4,
@@ -16,7 +16,7 @@ test('[exponentialScaleComputed] returns an exponential scale', () => {
     xxl: 128,
   };
 
-  expect(exponentialScaleComputed(16, 2)).toEqual(expectedResult);
+  expect(exponentialScaleAbsolute(16, 2)).toEqual(expectedResult);
 });
 
 test('[exponentialScaleRelative] returns a relative exponential scale', () => {
@@ -33,7 +33,7 @@ test('[exponentialScaleRelative] returns a relative exponential scale', () => {
   expect(exponentialScaleRelative(16, 2)).toEqual(expectedResult);
 });
 
-test('[exponentialScaleComputed] returns a golden ratio scale', () => {
+test('[exponentialScaleAbsolute] returns a golden ratio scale', () => {
   const expectedResult = {
     xxs: 3.78,
     xs: 6.11,
@@ -44,7 +44,7 @@ test('[exponentialScaleComputed] returns a golden ratio scale', () => {
     xxl: 67.78,
   };
 
-  expect(exponentialScaleComputed(16, 1.618)).toEqual(expectedResult);
+  expect(exponentialScaleAbsolute(16, 1.618)).toEqual(expectedResult);
 });
 
 test('[exponentialScaleRelative] returns a relative golden ratio scale', () => {
@@ -61,7 +61,7 @@ test('[exponentialScaleRelative] returns a relative golden ratio scale', () => {
   expect(exponentialScaleRelative(16, 1.618)).toEqual(expectedResult);
 });
 
-test('[linearScaleComputed] returns a linear scale', () => {
+test('[linearScaleAbsolute] returns a linear scale', () => {
   const expectedResult = {
     xxs: 4,
     xs: 8,
@@ -72,7 +72,7 @@ test('[linearScaleComputed] returns a linear scale', () => {
     xxl: 28,
   };
 
-  expect(linearScaleComputed(16, 0.25)).toEqual(expectedResult);
+  expect(linearScaleAbsolute(16, 0.25)).toEqual(expectedResult);
 });
 
 test('[linearScaleRelative] returns a relative linear scale', () => {

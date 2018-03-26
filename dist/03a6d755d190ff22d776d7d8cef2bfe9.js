@@ -71,147 +71,74 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({11:[function(require,module,exports) {
-"use strict";
+})({12:[function(require,module,exports) {
+var bundleURL = null;
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
 
-exports.__esModule = true;
-function roundDecimals(num) {
-    return Math.round(num * 100) / 100;
+  return bundleURL;
 }
-function exponentialScaleAbsolute(base, ratio) {
-    var md = base;
-    var sm = roundDecimals(md / ratio);
-    var xs = roundDecimals(sm / ratio);
-    var xxs = roundDecimals(xs / ratio);
-    var lg = roundDecimals(md * ratio);
-    var xl = roundDecimals(lg * ratio);
-    var xxl = roundDecimals(xl * ratio);
-    return {
-        xxs: xxs,
-        xs: xs,
-        sm: sm,
-        md: md,
-        lg: lg,
-        xl: xl,
-        xxl: xxl
-    };
-}
-exports.exponentialScaleAbsolute = exponentialScaleAbsolute;
-function exponentialScaleRelative(base, ratio) {
-    var md = base / base;
-    var sm = roundDecimals(md / ratio);
-    var xs = roundDecimals(sm / ratio);
-    var xxs = roundDecimals(xs / ratio);
-    var lg = roundDecimals(md * ratio);
-    var xl = roundDecimals(lg * ratio);
-    var xxl = roundDecimals(xl * ratio);
-    return {
-        xxs: xxs,
-        xs: xs,
-        sm: sm,
-        md: md,
-        lg: lg,
-        xl: xl,
-        xxl: xxl
-    };
-}
-exports.exponentialScaleRelative = exponentialScaleRelative;
-function linearScaleAbsolute(base, ratio) {
-    var distance = base * ratio;
-    var md = base;
-    var sm = md - distance;
-    var xs = sm - distance;
-    var xxs = xs - distance;
-    var lg = md + distance;
-    var xl = lg + distance;
-    var xxl = xl + distance;
-    return {
-        xxs: xxs,
-        xs: xs,
-        sm: sm,
-        md: md,
-        lg: lg,
-        xl: xl,
-        xxl: xxl
-    };
-}
-exports.linearScaleAbsolute = linearScaleAbsolute;
-function linearScaleRelative(base, distance) {
-    var md = base / base;
-    var sm = md - distance;
-    var xs = sm - distance;
-    var xxs = xs - distance;
-    var lg = md + distance;
-    var xl = lg + distance;
-    var xxl = xl + distance;
-    return {
-        xxs: xxs,
-        xs: xs,
-        sm: sm,
-        md: md,
-        lg: lg,
-        xl: xl,
-        xxl: xxl
-    };
-}
-exports.linearScaleRelative = linearScaleRelative;
-},{}],6:[function(require,module,exports) {
-"use strict";
 
-exports.__esModule = true;
-var scale_1 = require("./scale");
-(function () {
-    var domRoot = document.documentElement;
-    var relativeDisplayNodes = document.querySelectorAll('[data-behavior~="get-relative-size"]');
-    var absoluteDisplayNodes = document.querySelectorAll('[data-behavior~="get-absolute-size"]');
-    var relativeDisplayElements = Array.from(relativeDisplayNodes);
-    var absoluteDisplayElements = Array.from(absoluteDisplayNodes);
-    function getDesktopBaseSize() {
-        return parseInt(getComputedStyle(domRoot).getPropertyValue("--desktop-font-size")) || 18;
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
+    if (matches) {
+      return getBaseURL(matches[0]);
     }
-    function updateDesktopScale(event) {
-        var size = event.target.value;
-        domRoot.style.setProperty('--desktop-font-size', size + "px");
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],9:[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+  newLink.onload = function () {
+    link.remove();
+  };
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
     }
-    function updateCustomProperties(scale) {
-        Object.keys(scale).map(function (key) {
-            domRoot.style.setProperty("--space-" + key, scale[key] + "rem");
-        });
-    }
-    function updateDisplaySizes(scale, elements, units) {
-        elements.map(function (element) {
-            var size = element.dataset.scale;
-            element.innerHTML = scale[size] + units;
-        });
-    }
-    function toggleScale(event) {
-        var ratio = event.target.value;
-        var baseSize = getDesktopBaseSize();
-        var relativeScale = scale_1.exponentialScaleRelative(baseSize, ratio);
-        var absoluteScale = scale_1.exponentialScaleAbsolute(baseSize, ratio);
-        updateCustomProperties(relativeScale);
-        updateDisplaySizes(relativeScale, relativeDisplayElements, ' rem');
-        updateDisplaySizes(absoluteScale, absoluteDisplayElements, ' px');
-    }
-    Array.from(document.querySelectorAll('[data-behavior~="get-new-scale"]')).map(function (input) {
-        input.addEventListener('change', toggleScale);
-    });
-    document.querySelector('[data-behavior~="change-base-desktop"]').addEventListener('change', updateDesktopScale);
-})();
-// Create initApp
-// Binds all the listeners
-// Builds a model from the current variables
-// Updates the displays
-// On any event
-// the bound function calculates a value
-// sends it to the update function
-// Update
-// holds the current model
-// gets the new model
-// Updates displays, etc
-// Makes destructive changes
-// switch/case branch that handles all the updates?
-},{"./scale":11}],13:[function(require,module,exports) {
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":12}],5:[function(require,module,exports) {
+
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+},{"_css_loader":9}],13:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
@@ -334,5 +261,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.require, id);
   });
 }
-},{}]},{},[13,6])
-//# sourceMappingURL=/dist/621f1908af9e0cf2a3f85d995da263e2.map
+},{}]},{},[13])
+//# sourceMappingURL=/dist/03a6d755d190ff22d776d7d8cef2bfe9.map

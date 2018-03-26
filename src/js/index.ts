@@ -1,13 +1,13 @@
 import { Scale } from './types';
-import { exponentialScaleComputed, exponentialScaleRelative } from './scale';
+import { exponentialScaleAbsolute, exponentialScaleRelative } from './scale';
 
 (() => {
   const domRoot = document.documentElement;
 
   const relativeDisplayNodes = document.querySelectorAll('[data-behavior~="get-relative-size"]');
-  const computedDisplayNodes = document.querySelectorAll('[data-behavior~="get-actual-size"]');
+  const absoluteDisplayNodes = document.querySelectorAll('[data-behavior~="get-absolute-size"]');
   const relativeDisplayElements = Array.from(relativeDisplayNodes);
-  const computedDisplayElements = Array.from(computedDisplayNodes);
+  const absoluteDisplayElements = Array.from(absoluteDisplayNodes);
 
   function getDesktopBaseSize(): number {
     return parseInt(getComputedStyle(domRoot).getPropertyValue(`--desktop-font-size`)) || 18;
@@ -35,11 +35,11 @@ import { exponentialScaleComputed, exponentialScaleRelative } from './scale';
     const ratio = event.target.value;
     const baseSize = getDesktopBaseSize();
     const relativeScale = exponentialScaleRelative(baseSize, ratio);
-    const computedScale = exponentialScaleComputed(baseSize, ratio);
+    const absoluteScale = exponentialScaleAbsolute(baseSize, ratio);
 
     updateCustomProperties(relativeScale);
     updateDisplaySizes(relativeScale, relativeDisplayElements, ' rem');
-    updateDisplaySizes(computedScale, computedDisplayElements, ' px');
+    updateDisplaySizes(absoluteScale, absoluteDisplayElements, ' px');
   }
 
   Array.from(document.querySelectorAll('[data-behavior~="get-new-scale"]')).map(input => {
