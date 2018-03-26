@@ -6,8 +6,8 @@
   "author": "Brian Holt <bholtbholt@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn clean-dist && parcel build src/index.html --public-url ./",
-    "clean-dist": "rm -rf dist/",
+    "build": "yarn clean-dist && parcel build src/index.html --out-dir docs --public-url ./",
+    "clean-dist": "rm -rf docs/",
     "start": "parcel src/index.html -p 3000",
     "test": "jest --watch"
   },
