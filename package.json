@@ -6,7 +6,7 @@
   "author": "Brian Holt <bholtbholt@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "build": "parcel build src/index.html",
+    "build": "yarn clean-dist && parcel build src/index.html",
     "clean-dist": "rm -rf dist/",
     "start": "parcel src/index.html -p 3000",
     "test": "jest --watch"
@@ -28,10 +28,7 @@
       "^.+\\.ts$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.ts$",
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ]
+    "moduleFileExtensions": ["ts", "js"]
   },
   "dependencies": {
     "npm": "^5.8.0"
