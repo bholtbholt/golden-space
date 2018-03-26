@@ -6,7 +6,7 @@
   "author": "Brian Holt <bholtbholt@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "build": "parcel build src/index.html --out-dir ./",
+    "build": "parcel build src/index.html --out-dir ./ --public-url ./",
     "clean-dist": "rm -rf dist/",
     "start": "parcel src/index.html -p 3000",
     "test": "jest --watch"
