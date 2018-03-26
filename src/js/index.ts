@@ -65,14 +65,14 @@ import { update } from './update';
 
   domElements.exponentialToggles.map(input => {
     input.addEventListener('change', function() {
-      const size = parseFloat(this.value);
-      update(Msg.UpdateRatio, size);
+      const ratio = parseFloat(this.value);
+      update(Msg.UpdateRatio, { ratio });
     });
   });
 
   domElements.desktopScale.addEventListener('change', function() {
     const size = parseInt(this.value);
-    update(Msg.UpdateDesktopBaseSize, size);
+    update(Msg.UpdateDesktopBaseSize, { size });
   });
 
   update(Msg.UpdateDisplay);

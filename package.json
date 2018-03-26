@@ -1,12 +1,12 @@
 {
   "name": "golden-space",
   "version": "1.0.0",
-  "description": "A tool for determining the space in Web Apps",
+  "description": "Calculate and preview the perfect spacing scale in web apps",
   "main": "index.html",
   "author": "Brian Holt <bholtbholt@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn clean-dist && parcel build src/index.html",
+    "build": "yarn clean-dist && parcel build src/index.html --public-url ./",
     "clean-dist": "rm -rf dist/",
     "start": "parcel src/index.html -p 3000",
     "test": "jest --watch"

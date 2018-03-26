@@ -1,12 +1,18 @@
 import { Scale, Msg } from './types';
 import { exponentialScaleAbsolute, exponentialScaleRelative } from './scale';
 
-function update(message: Msg, size?: number) {
+interface Params {
+  size?: number;
+  ratio?: number;
+  scale?: string;
+}
+
+function update(message: Msg, params?: Params) {
   const dom = (<any>window).Model.domElements;
 
   switch (message) {
     case 'UPDATE_RATIO':
-      (<any>window).Model.ratio = size;
+      (<any>window).Model.ratio = params.ratio;
 
       update(Msg.UpdateScale);
       break;
@@ -27,6 +33,7 @@ function update(message: Msg, size?: number) {
       break;
 
     case 'UPDATE_DESKTOP_BASE_SIZE':
+      const size = params.size;
       dom.root.style.setProperty('--desktop-font-size', `${size}px`);
       (<any>window).Model.desktopFontSize = size;
 
