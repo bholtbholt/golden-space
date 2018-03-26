@@ -10,18 +10,19 @@
   <link rel="stylesheet" href="./css/index.scss">
 </head>
 <body>
-  <h1 class="title mb-xxl">Golden Space</h1>
+  <h1 class="title mb-lg">Golden Space</h1>
 
-  <form class="toggle mx-auto mb-xxl">
-    <input class="toggle__radio" id="ratio-brass" type="radio" name="ratio" value="1" data-behavior="toggle-brass">
-    <label class="toggle__btn" for="ratio-brass">Brass</label>
+  <div class="toggle mx-auto mb-lg">
+    <input class="toggle__radio" id="scale-brass" type="radio" name="scale" value="1" data-behavior="toggle-brass">
+    <label class="toggle__btn" for="scale-brass">Brass</label>
 
-    <input class="toggle__radio" id="ratio-golden" type="radio" name="ratio" value="1.618" data-behavior="get-new-scale">
-    <label class="toggle__btn" for="ratio-golden">Golden Ratio</label>
+    <input class="toggle__radio" id="scale-golden" type="radio" name="scale" value="1.618" data-behavior="get-new-scale">
+    <label class="toggle__btn" for="scale-golden">Golden Ratio</label>
 
-    <input class="toggle__radio" id="ratio-exponential" type="radio" name="ratio" value="2" data-behavior="get-new-scale">
-    <label class="toggle__btn" for="ratio-exponential">Exponential</label>
-  </form>
+    <input class="toggle__radio" id="scale-exponential" type="radio" name="scale" value="2" data-behavior="get-new-scale">
+    <label class="toggle__btn" for="scale-exponential">Exponential</label>
+  </div>
+  <input class="mb-md mx-auto" id="space-base-desktop" type="range" value="18" max="24" min="10" data-behavior="change-base-desktop">
 
   <div class="cards-wrapper mx-auto pb-xl">
     <ul class="card bb-xxl p-md m-md">
@@ -60,6 +61,7 @@
       <li class="card__actual-size" data-behavior="get-actual-size" data-scale="xxs"></li>
     </ul>
   </div>
+
   <script src="./js/index.ts"></script>
 </body>
 </html>

@@ -1,0 +1,42 @@
+$range-slider-color: rgba(223, 249, 251, 0.9); //color('ice');
+$range-slider-height: 0.618rem;
+$range-handle-color: color('blue-light');
+$range-handle-bottom-border: 0.1rem solid color('blue-dark');
+$range-handle-size: 1.4rem;
+$range-handle-min-size: 20px;
+
+input[type='range'] {
+  appearance: none;
+  background-color: $range-slider-color;
+  border-radius: border();
+  box-shadow: shadow('box-inset');
+  display: block;
+  height: $range-slider-height;
+  outline: none;
+  width: 50%;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  background: $range-handle-color;
+  border-bottom: $range-handle-bottom-border;
+  border-radius: border('round');
+  box-shadow: shadow('box');
+  cursor: pointer;
+  height: $range-handle-size;
+  min-height: $range-handle-min-size;
+  min-width: $range-handle-min-size;
+  width: $range-handle-size;
+}
+
+input[type='range']::-moz-range-thumb {
+  background: $range-handle-color;
+  border-bottom: $range-handle-bottom-border;
+  border-radius: border('round');
+  box-shadow: shadow('box');
+  cursor: pointer;
+  height: $range-handle-size;
+  min-height: $range-handle-min-size;
+  min-width: $range-handle-min-size;
+  width: $range-handle-size;
+}
