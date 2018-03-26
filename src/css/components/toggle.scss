@@ -11,7 +11,7 @@ $toggle-padding: space('sm');
 }
 
 .toggle__btn {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   text-align: center;
   padding: $toggle-padding;
   background-color: $toggle-bg;
@@ -27,7 +27,7 @@ $toggle-padding: space('sm');
   }
 
   @media (breakpoint('desktop')) {
-    flex: 0 0 150px;
+    min-width: 8rem;
   }
 }
 

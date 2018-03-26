@@ -1,0 +1,27 @@
+.flex {
+  display: flex;
+}
+
+.flex > * {
+  min-width: 0;
+}
+
+.flex-11 {
+  flex: 1 1;
+}
+
+.flex-10 {
+  flex: 1 0;
+}
+
+.flex-01 {
+  flex: 0 1;
+}
+
+.flex-auto {
+  flex: 0 0 auto;
+}
+
+.flex-vertical {
+  flex-direction: column;
+}

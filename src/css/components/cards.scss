@@ -2,6 +2,7 @@
   align-items: flex-start;
   display: flex;
   overflow-x: auto;
+  max-width: 100%;
 
   @media (breakpoint('desktop')) {
     justify-content: center;
