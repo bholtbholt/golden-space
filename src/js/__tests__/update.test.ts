@@ -1,5 +1,6 @@
 import { Model, DomElements, Msg } from '../types';
 import { update } from '../update';
+import { brassScaleRelative } from '../scale';
 
 function createDisplayElements(): HTMLLIElement[] {
   const range = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
@@ -130,6 +131,14 @@ test('[UPDATE_RATIO] Updates the model absolute scale', () => {
     absoluteScale,
   };
   expect(update(Msg.UpdateRatio, { ratio: 2 })).toMatchObject(expectedResults);
+});
+
+test('[UPDATE_RATIO] Updates the model relative scale with brass', () => {
+  const relativeScale = brassScaleRelative();
+  const expectedResults = {
+    relativeScale,
+  };
+  expect(update(Msg.UpdateRatio, { ratio: 0 })).toMatchObject(expectedResults);
 });
 
 test('[UPDATE_BASE_SIZE] Updates the model base size', () => {

@@ -44,6 +44,28 @@ function exponentialScaleRelative(base: number, ratio: number): Scale {
   };
 }
 
+function brassScaleRelative(): Scale {
+  return {
+    xxs: 0.2,
+    xs: 0.4,
+    sm: 0.8,
+    md: 1,
+    lg: 1.5,
+    xl: 2,
+    xxl: 4,
+  };
+}
+
+function brassScaleAbsolute(base: number): Scale {
+  let brassScale: Scale = {};
+  const relativeScale = brassScaleRelative();
+  Object.entries(relativeScale).map((size: [string, number]) => {
+    return (brassScale[size[0]] = roundDecimals(size[1] * base));
+  });
+
+  return brassScale;
+}
+
 function linearScaleAbsolute(base: number, ratio: number): Scale {
   const distance = base * ratio;
   const md = base;
@@ -86,6 +108,8 @@ function linearScaleRelative(base: number, distance: number): Scale {
 }
 
 export {
+  brassScaleRelative,
+  brassScaleAbsolute,
   exponentialScaleAbsolute,
   exponentialScaleRelative,
   linearScaleAbsolute,

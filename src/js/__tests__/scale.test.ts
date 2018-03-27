@@ -1,11 +1,39 @@
 import {
+  brassScaleRelative,
+  brassScaleAbsolute,
   exponentialScaleAbsolute,
   exponentialScaleRelative,
   linearScaleAbsolute,
   linearScaleRelative,
 } from '../scale';
 
-test('[exponentialScaleAbsolute] returns an exponential scale', () => {
+test('[brassScaleRelative] returns a relative brass scale ', () => {
+  const expectedResult = {
+    xxs: 0.2,
+    xs: 0.4,
+    sm: 0.8,
+    md: 1,
+    lg: 1.5,
+    xl: 2,
+    xxl: 4,
+  };
+  expect(brassScaleRelative()).toEqual(expectedResult);
+});
+
+test('[brassScaleAbsolute] returns an absolute brass scale ', () => {
+  const expectedResult = {
+    xxs: 3.2,
+    xs: 6.4,
+    sm: 12.8,
+    md: 16,
+    lg: 24,
+    xl: 32,
+    xxl: 64,
+  };
+  expect(brassScaleAbsolute(16)).toEqual(expectedResult);
+});
+
+test('[exponentialScaleAbsolute] returns an absolute exponential scale', () => {
   const expectedResult = {
     xxs: 2,
     xs: 4,
@@ -33,7 +61,7 @@ test('[exponentialScaleRelative] returns a relative exponential scale', () => {
   expect(exponentialScaleRelative(16, 2)).toEqual(expectedResult);
 });
 
-test('[exponentialScaleAbsolute] returns a golden ratio scale', () => {
+test('[exponentialScaleAbsolute] returns an absolute golden ratio scale', () => {
   const expectedResult = {
     xxs: 3.78,
     xs: 6.11,

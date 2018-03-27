@@ -1,5 +1,10 @@
-import { Scale, Msg, Model } from './types';
-import { exponentialScaleAbsolute, exponentialScaleRelative } from './scale';
+import { Scale, Msg, Model, DomElements } from './types';
+import {
+  brassScaleAbsolute,
+  brassScaleRelative,
+  exponentialScaleAbsolute,
+  exponentialScaleRelative,
+} from './scale';
 
 interface Params {
   size?: number;
@@ -9,19 +14,42 @@ interface Params {
 
 export function update(message: Msg, params?: Params): Model {
   const dom = window.Model.domElements;
+  // Model Properties for "local" update functions
+  let baseSize: number;
+  let relativeScale: Scale;
+  let absoluteScale: Scale;
+  let ratio: number;
 
   switch (message) {
     case 'UPDATE_RATIO':
-      window.Model.ratio = params.ratio || 1.618;
+      window.Model.ratio = params.ratio || 0;
 
-      update(Msg.UpdateScale);
+      if (window.Model.ratio === 0) {
+        update(Msg.UpdateWithBrassScale);
+      } else {
+        update(Msg.UpdateWithExponentialScale);
+      }
       break;
 
-    case 'UPDATE_SCALE':
-      const baseSize = window.Model.baseSize;
-      const ratio = window.Model.ratio;
-      const relativeScale: Scale = exponentialScaleRelative(baseSize, ratio);
-      const absoluteScale: Scale = exponentialScaleAbsolute(baseSize, ratio);
+    case 'UPDATE_WITH_BRASS_SCALE':
+      baseSize = window.Model.baseSize;
+      relativeScale = brassScaleRelative();
+      absoluteScale = brassScaleAbsolute(baseSize);
+      window.Model.relativeScale = relativeScale;
+      window.Model.absoluteScale = absoluteScale;
+
+      Object.keys(relativeScale).map(key => {
+        dom.root.style.setProperty(`--space-${key}`, `${relativeScale[key]}rem`);
+      });
+
+      update(Msg.UpdateDisplay);
+      break;
+
+    case 'UPDATE_WITH_EXPONENTIAL_SCALE':
+      baseSize = window.Model.baseSize;
+      ratio = window.Model.ratio;
+      relativeScale = exponentialScaleRelative(baseSize, ratio);
+      absoluteScale = exponentialScaleAbsolute(baseSize, ratio);
       window.Model.relativeScale = relativeScale;
       window.Model.absoluteScale = absoluteScale;
 

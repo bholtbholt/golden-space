@@ -18,6 +18,7 @@ import { update } from './update';
   const exponentialToggles = Array.from(
     document.querySelectorAll('[data-behavior~="get-new-scale"]'),
   );
+  const brassToggle = document.querySelector('[data-behavior~="toggle-brass-scale"]');
 
   const domElements: DomElements = {
     root: domRoot as HTMLHtmlElement,
@@ -25,6 +26,7 @@ import { update } from './update';
     absoluteDisplays: absoluteDisplayElements as HTMLLIElement[],
     baseSizeScale: baseSizeScale as HTMLInputElement,
     exponentialToggles: exponentialToggles as HTMLInputElement[],
+    brassToggle: brassToggle as HTMLInputElement,
   };
 
   //////////////////////////////////////
@@ -52,7 +54,7 @@ import { update } from './update';
       xl: 36,
       xxl: 72,
     },
-    ratio: 1.618,
+    ratio: 0,
   };
   window.Model = initModel;
 
@@ -65,6 +67,11 @@ import { update } from './update';
       const ratio = parseFloat(this.value);
       update(Msg.UpdateRatio, { ratio });
     });
+  });
+
+  domElements.brassToggle.addEventListener('change', function() {
+    const ratio = parseFloat(this.value);
+    update(Msg.UpdateRatio, { ratio });
   });
 
   domElements.baseSizeScale.addEventListener('change', function() {

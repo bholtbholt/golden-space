@@ -14,6 +14,7 @@ interface DomElements {
   absoluteDisplays: HTMLLIElement[];
   baseSizeScale: HTMLInputElement;
   exponentialToggles: HTMLInputElement[];
+  brassToggle: HTMLInputElement;
 }
 
 interface Model {
@@ -25,10 +26,11 @@ interface Model {
 }
 
 enum Msg {
-  UpdateScale = 'UPDATE_SCALE',
   UpdateBaseSize = 'UPDATE_BASE_SIZE',
   UpdateDisplay = 'UPDATE_DISPLAY',
   UpdateRatio = 'UPDATE_RATIO',
+  UpdateWithExponentialScale = 'UPDATE_WITH_EXPONENTIAL_SCALE',
+  UpdateWithBrassScale = 'UPDATE_WITH_BRASS_SCALE',
 }
 
 declare global {
