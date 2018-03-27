@@ -22,7 +22,7 @@ html {
 
 body {
   font-size: $mobile-font-size;
-  padding: space('xxl') space('lg');
+  padding: space('xl') space('sm');
 
   @media (breakpoint('desktop')) {
     font-size: $desktop-font-size;
