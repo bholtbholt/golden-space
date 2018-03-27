@@ -22,8 +22,8 @@ The **primary goal** of this exploration was to determine whether it was feasibl
 ## Next Steps
 
 * Create a "Brass scale" function that sits in between the golden ratio and exponential
-* Write Jest tests for the updates
 * Add some typography to the bottom of the page for a space + typography side-by-side comparison
+* Add some UI elements for '''
 
 ## Development
 
@@ -50,6 +50,7 @@ To create a new build:
 ## Reading on Space
 
 * [Nathan Curtis' Thoughts on Space in UI Design](https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62)
+* [Kevin Powell of EightShapes' Motivations for their Text Crop Tool](https://medium.com/eightshapes-llc/cropping-away-negative-impacts-of-line-height-84d744e016ce)
 * [An In-depth Study on CSS Typography](https://iamvdo.me/en/blog/css-font-metrics-line-height-and-vertical-align)
 * [Zurb's Modular Scale](https://zurb.com/word/modular-scale)
 * [Tim Brown's Modular Scale Calculator](http://www.modularscale.com)

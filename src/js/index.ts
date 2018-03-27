@@ -31,7 +31,7 @@ import { update } from './update';
   // Initialize the model
   //////////////////////////////////////
 
-  const model: Model = {
+  const initModel: Model = {
     domElements,
     baseSize: 18,
     relativeScale: {
@@ -54,7 +54,7 @@ import { update } from './update';
     },
     ratio: 1.618,
   };
-  window.Model = model;
+  window.Model = initModel;
 
   //////////////////////////////////////
   // Bind Listeners

@@ -1,4 +1,4 @@
-import { Scale, Msg } from './types';
+import { Scale, Msg, Model } from './types';
 import { exponentialScaleAbsolute, exponentialScaleRelative } from './scale';
 
 interface Params {
@@ -7,7 +7,7 @@ interface Params {
   scale?: string;
 }
 
-export function update(message: Msg, params?: Params) {
+export function update(message: Msg, params?: Params): Model {
   const dom = window.Model.domElements;
 
   switch (message) {
@@ -56,4 +56,5 @@ export function update(message: Msg, params?: Params) {
     default:
       break;
   }
+  return window.Model;
 }
