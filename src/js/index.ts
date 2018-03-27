@@ -14,7 +14,7 @@ import { update } from './update';
   const absoluteDisplayElements = Array.from(
     document.querySelectorAll('[data-behavior~="get-absolute-size"]'),
   );
-  const desktopScale = document.querySelector('[data-behavior~="change-base-desktop"]');
+  const baseSizeScale = document.querySelector('[data-behavior~="change-base-size"]');
   const exponentialToggles = Array.from(
     document.querySelectorAll('[data-behavior~="get-new-scale"]'),
   );
@@ -23,7 +23,7 @@ import { update } from './update';
     root: domRoot as HTMLHtmlElement,
     relativeDisplays: relativeDisplayElements as HTMLLIElement[],
     absoluteDisplays: absoluteDisplayElements as HTMLLIElement[],
-    desktopScale: desktopScale as HTMLInputElement,
+    baseSizeScale: baseSizeScale as HTMLInputElement,
     exponentialToggles: exponentialToggles as HTMLInputElement[],
   };
 
@@ -33,8 +33,7 @@ import { update } from './update';
 
   const model: Model = {
     domElements,
-    mobileFontSize: 14,
-    desktopFontSize: 18,
+    baseSize: 18,
     relativeScale: {
       xxs: 0.2,
       xs: 0.4,
@@ -68,9 +67,9 @@ import { update } from './update';
     });
   });
 
-  domElements.desktopScale.addEventListener('change', function() {
+  domElements.baseSizeScale.addEventListener('change', function() {
     const size = parseInt(this.value);
-    update(Msg.UpdateDesktopBaseSize, { size });
+    update(Msg.UpdateBaseSize, { size });
   });
 
   update(Msg.UpdateDisplay);

@@ -12,14 +12,13 @@ interface DomElements {
   root: HTMLHtmlElement;
   relativeDisplays: HTMLLIElement[];
   absoluteDisplays: HTMLLIElement[];
-  desktopScale: HTMLInputElement;
+  baseSizeScale: HTMLInputElement;
   exponentialToggles: HTMLInputElement[];
 }
 
 interface Model {
   domElements: DomElements;
-  mobileFontSize: number;
-  desktopFontSize: number;
+  baseSize: number;
   relativeScale: Scale;
   absoluteScale: Scale;
   ratio: number;
@@ -27,8 +26,7 @@ interface Model {
 
 enum Msg {
   UpdateScale = 'UPDATE_SCALE',
-  UpdateDesktopBaseSize = 'UPDATE_DESKTOP_BASE_SIZE',
-  UpdateMobileBaseSize = 'UPDATE_MOBILE_BASE_SIZE',
+  UpdateBaseSize = 'UPDATE_BASE_SIZE',
   UpdateDisplay = 'UPDATE_DISPLAY',
   UpdateRatio = 'UPDATE_RATIO',
 }

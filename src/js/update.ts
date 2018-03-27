@@ -1,4 +1,4 @@
-import { Scale, Msg, Model } from './types';
+import { Scale, Msg } from './types';
 import { exponentialScaleAbsolute, exponentialScaleRelative } from './scale';
 
 interface Params {
@@ -18,7 +18,7 @@ function update(message: Msg, params?: Params) {
       break;
 
     case 'UPDATE_SCALE':
-      const baseSize = window.Model.desktopFontSize;
+      const baseSize = window.Model.baseSize;
       const ratio = window.Model.ratio;
       const relativeScale: Scale = exponentialScaleRelative(baseSize, ratio);
       const absoluteScale: Scale = exponentialScaleAbsolute(baseSize, ratio);
@@ -32,15 +32,14 @@ function update(message: Msg, params?: Params) {
       update(Msg.UpdateDisplay);
       break;
 
-    case 'UPDATE_DESKTOP_BASE_SIZE':
-      const size = params.size;
-      dom.root.style.setProperty('--desktop-font-size', `${size}px`);
-      window.Model.desktopFontSize = size;
+    case 'UPDATE_BASE_SIZE':
+      const desktopSize = params.size;
+      const mobileSize = desktopSize - 4;
+      dom.root.style.setProperty('--desktop-font-size', `${desktopSize}px`);
+      dom.root.style.setProperty('--mobile-font-size', `${mobileSize}px`);
+      window.Model.baseSize = desktopSize;
 
       update(Msg.UpdateScale);
-      break;
-
-    case 'UPDATE_MOBILE_BASE_SIZE':
       break;
 
     case 'UPDATE_DISPLAY':
