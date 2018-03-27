@@ -1,8 +1,6 @@
 import { Model, DomElements, Msg } from './types';
 import { update } from './update';
 
-(<any>window).Model = {};
-
 // init function
 (() => {
   //////////////////////////////////////
@@ -57,7 +55,7 @@ import { update } from './update';
     },
     ratio: 1.618,
   };
-  (<any>window).Model = model;
+  window.Model = model;
 
   //////////////////////////////////////
   // Bind Listeners

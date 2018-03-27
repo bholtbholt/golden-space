@@ -1,4 +1,4 @@
-import { Scale, Msg } from './types';
+import { Scale, Msg, Model } from './types';
 import { exponentialScaleAbsolute, exponentialScaleRelative } from './scale';
 
 interface Params {
@@ -8,22 +8,22 @@ interface Params {
 }
 
 function update(message: Msg, params?: Params) {
-  const dom = (<any>window).Model.domElements;
+  const dom = window.Model.domElements;
 
   switch (message) {
     case 'UPDATE_RATIO':
-      (<any>window).Model.ratio = params.ratio;
+      window.Model.ratio = params.ratio;
 
       update(Msg.UpdateScale);
       break;
 
     case 'UPDATE_SCALE':
-      const baseSize = (<any>window).Model.desktopFontSize;
-      const ratio = (<any>window).Model.ratio;
+      const baseSize = window.Model.desktopFontSize;
+      const ratio = window.Model.ratio;
       const relativeScale: Scale = exponentialScaleRelative(baseSize, ratio);
       const absoluteScale: Scale = exponentialScaleAbsolute(baseSize, ratio);
-      (<any>window).Model.relativeScale = relativeScale;
-      (<any>window).Model.absoluteScale = absoluteScale;
+      window.Model.relativeScale = relativeScale;
+      window.Model.absoluteScale = absoluteScale;
 
       Object.keys(relativeScale).map(key => {
         dom.root.style.setProperty(`--space-${key}`, `${relativeScale[key]}rem`);
@@ -35,7 +35,7 @@ function update(message: Msg, params?: Params) {
     case 'UPDATE_DESKTOP_BASE_SIZE':
       const size = params.size;
       dom.root.style.setProperty('--desktop-font-size', `${size}px`);
-      (<any>window).Model.desktopFontSize = size;
+      window.Model.desktopFontSize = size;
 
       update(Msg.UpdateScale);
       break;
@@ -46,11 +46,11 @@ function update(message: Msg, params?: Params) {
     case 'UPDATE_DISPLAY':
       dom.relativeDisplays.map((element: HTMLLIElement) => {
         const size = element.dataset.scale;
-        element.innerHTML = (<any>window).Model.relativeScale[size] + ' rem';
+        element.innerHTML = window.Model.relativeScale[size] + ' rem';
       });
       dom.absoluteDisplays.map((element: HTMLLIElement) => {
         const size = element.dataset.scale;
-        element.innerHTML = (<any>window).Model.absoluteScale[size] + ' px';
+        element.innerHTML = window.Model.absoluteScale[size] + ' px';
       });
       break;
 

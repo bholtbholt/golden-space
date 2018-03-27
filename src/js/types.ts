@@ -33,4 +33,10 @@ enum Msg {
   UpdateRatio = 'UPDATE_RATIO',
 }
 
+declare global {
+  interface Window {
+    Model: Model;
+  }
+}
+
 export { Scale, Model, DomElements, Msg };
