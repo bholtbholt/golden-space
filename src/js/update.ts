@@ -7,12 +7,12 @@ interface Params {
   scale?: string;
 }
 
-function update(message: Msg, params?: Params) {
+export function update(message: Msg, params?: Params) {
   const dom = window.Model.domElements;
 
   switch (message) {
     case 'UPDATE_RATIO':
-      window.Model.ratio = params.ratio;
+      window.Model.ratio = params.ratio || 1.618;
 
       update(Msg.UpdateScale);
       break;
@@ -33,7 +33,7 @@ function update(message: Msg, params?: Params) {
       break;
 
     case 'UPDATE_BASE_SIZE':
-      const desktopSize = params.size;
+      const desktopSize = params.size || 18;
       const mobileSize = desktopSize - 4;
       dom.root.style.setProperty('--desktop-font-size', `${desktopSize}px`);
       dom.root.style.setProperty('--mobile-font-size', `${mobileSize}px`);
@@ -57,5 +57,3 @@ function update(message: Msg, params?: Params) {
       break;
   }
 }
-
-export { update };
