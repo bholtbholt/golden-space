@@ -29,6 +29,7 @@ enum Msg {
   UpdateBaseSize = 'UPDATE_BASE_SIZE',
   UpdateDisplay = 'UPDATE_DISPLAY',
   UpdateRatio = 'UPDATE_RATIO',
+  UpdateScale = 'UPDATE_SCALE',
   UpdateWithExponentialScale = 'UPDATE_WITH_EXPONENTIAL_SCALE',
   UpdateWithBrassScale = 'UPDATE_WITH_BRASS_SCALE',
 }

@@ -21,7 +21,6 @@ The **primary goal** of this exploration was to determine whether it was feasibl
 
 ## Next Steps
 
-* Create a "Brass scale" function that sits in between the golden ratio and exponential
 * Add some typography to the bottom of the page for a space + typography side-by-side comparison
 * Add some UI elements for '''
 

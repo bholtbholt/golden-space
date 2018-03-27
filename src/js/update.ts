@@ -24,6 +24,10 @@ export function update(message: Msg, params?: Params): Model {
     case 'UPDATE_RATIO':
       window.Model.ratio = params.ratio || 0;
 
+      update(Msg.UpdateScale);
+      break;
+
+    case 'UPDATE_SCALE':
       if (window.Model.ratio === 0) {
         update(Msg.UpdateWithBrassScale);
       } else {
