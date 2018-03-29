@@ -16,7 +16,7 @@ $toggle-padding: space('sm');
   padding: $toggle-padding;
   background-color: $toggle-bg;
   cursor: pointer;
-  border-bottom: 2px solid $toggle-border;
+  border-bottom: 0.12em solid $toggle-border;
 
   &:first-of-type {
     border-radius: border() 0 0 border();
@@ -27,7 +27,7 @@ $toggle-padding: space('sm');
   }
 
   @media (breakpoint('desktop')) {
-    min-width: 8rem;
+    min-width: 8em;
   }
 }
 
@@ -36,7 +36,7 @@ $toggle-padding: space('sm');
 }
 
 .toggle__radio:checked + .toggle__btn {
-  $size: 3px;
+  $size: 0.18em;
 
   background-color: $toggle-active;
   border-bottom: $size solid $toggle-border-active;

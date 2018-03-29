@@ -67,8 +67,8 @@ export function update(message: Msg, params?: Params): Model {
     case 'UPDATE_BASE_SIZE':
       const desktopSize = params.size || 18;
       const mobileSize = desktopSize - 4;
-      dom.root.style.setProperty('--desktop-font-size', `${desktopSize}px`);
-      dom.root.style.setProperty('--mobile-font-size', `${mobileSize}px`);
+      dom.root.style.setProperty('--desktop-space-size', `${desktopSize}px`);
+      dom.root.style.setProperty('--mobile-space-size', `${mobileSize}px`);
       window.Model.baseSize = desktopSize;
 
       update(Msg.UpdateScale);

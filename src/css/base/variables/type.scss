@@ -1,5 +1,5 @@
-$mobile-font-size: var(--mobile-font-size);
-$desktop-font-size: var(--desktop-font-size);
+$mobile-font-size: 14px;
+$desktop-font-size: 18px;
 
 $line-height: 1.5;
 
@@ -11,11 +11,11 @@ $text-crop-font-size: 18px; // Default $desktop-font-size
 $text-crop-line-height: $line-height;
 
 $font-sizes: (
-  'headline': 3rem,
-  'subhead': 1.618rem,
-  'md': 1rem,
-  'sm': 0.88rem,
-  'xs': 0.8rem
+  'headline': 3em,
+  'subhead': 1.618em,
+  'md': 1em,
+  'sm': 0.88em,
+  'xs': 0.8em
 );
 
 @function font-size($font-size) {

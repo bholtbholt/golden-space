@@ -21,6 +21,7 @@ The **primary goal** of this exploration was to determine whether it was feasibl
 
 ## Next Steps
 
+* Add githooks for index and dist
 * Add some typography to the bottom of the page for a space + typography side-by-side comparison
 * Add some UI elements for '''
 

@@ -1,6 +1,6 @@
 // Base sizes will scale space throughout the entire site since they're based on REM
-$mobile-space-size-base: $mobile-font-size;
-$desktop-space-size-base: $desktop-font-size;
+$mobile-space-size-base: var(--mobile-space-size);
+$desktop-space-size-base: var(--desktop-space-size);
 
 $spacing: (
   'xxs': var(--space-xxs),
