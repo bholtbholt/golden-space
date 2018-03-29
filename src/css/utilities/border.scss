@@ -12,7 +12,7 @@
 @each $size in map-keys($spacing) {
   .bt-#{$size} {
     border-top-width: space($size);
-    border-style: solid;
+    border-top-style: solid;
   }
 }
 
@@ -21,7 +21,7 @@
 @each $size in map-keys($spacing) {
   .bb-#{$size} {
     border-bottom-width: space($size);
-    border-style: solid;
+    border-bottom-style: solid;
   }
 }
 
@@ -30,7 +30,7 @@
 @each $size in map-keys($spacing) {
   .bl-#{$size} {
     border-left-width: space($size);
-    border-style: solid;
+    border-left-style: solid;
   }
 }
 
@@ -39,7 +39,7 @@
 @each $size in map-keys($spacing) {
   .br-#{$size} {
     border-right-width: space($size);
-    border-style: solid;
+    border-right-style: solid;
   }
 }
 
@@ -49,7 +49,8 @@
   .by-#{$size} {
     border-top-width: space($size);
     border-bottom-width: space($size);
-    border-style: solid;
+    border-top-style: solid;
+    border-bottom-style: solid;
   }
 }
 
@@ -59,7 +60,8 @@
   .bx-#{$size} {
     border-left-width: space($size);
     border-right-width: space($size);
-    border-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
   }
 }
 

@@ -1,0 +1,9 @@
+// Border Colours
+// Use: .b-yellow .b-white .b-ice .b-ice-dark
+// .b-ice-darker .b-ice-darkest .b-purple .b-blue-light
+// .b-blue-dark .b-pink
+@each $color in map-keys($colors) {
+  .b-#{$color} {
+    border-color: color($color);
+  }
+}
