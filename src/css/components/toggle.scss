@@ -11,6 +11,7 @@ $toggle-padding: space('sm');
 }
 
 .toggle__btn {
+  @include text-crop($line-height);
   flex: 0 0 auto;
   text-align: center;
   padding: $toggle-padding;

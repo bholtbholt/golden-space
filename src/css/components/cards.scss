@@ -29,6 +29,12 @@
   }
 }
 
+.card__name,
+.card__relative-size,
+.card__absolute-size {
+  @include text-crop($line-height);
+}
+
 .card__name {
   font-weight: bold;
   letter-spacing: -0.025em;
