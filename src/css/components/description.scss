@@ -1,0 +1,24 @@
+$description-border: solid color('purple');
+
+.description {
+  max-width: 800px;
+}
+
+.description h2 {
+  border-bottom: space('xs') $description-border;
+}
+
+.description h3,
+.description p,
+.description ul,
+.description ol {
+  border-bottom: space('md') $description-border;
+}
+
+.description li {
+  border-bottom: space('xs') $description-border;
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
+}
