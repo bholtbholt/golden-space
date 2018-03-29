@@ -8,7 +8,8 @@ $colors: (
   'purple': #686de0,
   'blue-light': #7ed6df,
   'blue-dark': #22a6b3,
-  'pink': #ff7979
+  'pink': #ff7979,
+  'grey-darker': #322807
 );
 
 // Use: color('yellow')
@@ -19,6 +20,3 @@ $colors: (
     @error '`#{$color}` is an invalid argument in color() . Try: #{map-keys($colors)}.';
   }
 }
-
-// Tokens
-$body-bg: color('yellow');

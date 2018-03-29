@@ -8,11 +8,27 @@ li {
   margin: 0;
 }
 
-h1 {
+h1,
+h2 {
+  @include text-crop(1);
   font-size: font-size('headline');
 }
 
-h2,
 h3 {
+  @include text-crop(1);
   font-size: font-size('subhead');
+}
+
+p,
+div {
+  @include text-crop($line-height);
+}
+
+a {
+  color: color('grey-darker');
+
+  &:focus {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
 }

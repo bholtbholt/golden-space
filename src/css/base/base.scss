@@ -17,18 +17,15 @@
 }
 
 html {
-  background-color: $body-bg;
+  background-color: color('yellow');
 }
 
 body {
   font-size: $mobile-font-size;
+  color: color('grey-darker');
   padding: space('xl') space('sm');
 
   @media (breakpoint('desktop')) {
     font-size: $desktop-font-size;
   }
-}
-
-body * {
-  @include text-crop($line-height);
 }
