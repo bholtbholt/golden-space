@@ -31,6 +31,7 @@ enum Msg {
   UpdateScale = 'UPDATE_SCALE',
   UpdateWithExponentialScale = 'UPDATE_WITH_EXPONENTIAL_SCALE',
   UpdateWithBrassScale = 'UPDATE_WITH_BRASS_SCALE',
+  UpdateWithLinearScale = 'UPDATE_WITH_LINEAR_SCALE',
 }
 
 declare global {

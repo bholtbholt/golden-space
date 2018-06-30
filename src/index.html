@@ -13,16 +13,22 @@
   <h1 class="title mb-lg">Golden Space</h1>
 
   <div class="toggle mx-auto mb-lg">
-    <input class="toggle__radio" id="scale-golden" type="radio" name="scale" value="1.618" data-behavior="get-new-scale">
-    <label class="toggle__btn" for="scale-golden">Golden Ratio</label>
+    <input class="toggle__radio" id="scale-quarter" type="radio" name="scale" value="0.25" data-behavior="get-new-scale">
+    <label class="toggle__btn" for="scale-quarter">Quarters</label>
 
-    <input class="toggle__radio" id="scale-brass" type="radio" name="scale" value="0" data-behavior="toggle-brass-scale" checked>
+    <input class="toggle__radio" id="scale-double" type="radio" name="scale" value="0.5" data-behavior="get-new-scale">
+    <label class="toggle__btn" for="scale-double">Doubles</label>
+
+    <input class="toggle__radio" id="scale-brass" type="radio" name="scale" value="0" data-behavior="get-new-scale" checked>
     <label class="toggle__btn" for="scale-brass">Brass</label>
+
+    <input class="toggle__radio" id="scale-golden" type="radio" name="scale" value="1.62" data-behavior="get-new-scale">
+    <label class="toggle__btn" for="scale-golden">Golden Ratio</label>
 
     <input class="toggle__radio" id="scale-exponential" type="radio" name="scale" value="2" data-behavior="get-new-scale">
     <label class="toggle__btn" for="scale-exponential">Exponential</label>
   </div>
-  <input class="mb-md mx-auto" type="range" value="18" max="24" min="10" data-behavior="change-base-size">
+  <input class="mb-md mx-auto" type="range" value="16" max="24" min="10" data-behavior="change-base-size">
 
   <div class="cards-wrapper mx-auto pb-xl">
     <ul class="card bb-xxl p-md m-md">

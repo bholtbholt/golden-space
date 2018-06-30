@@ -4,6 +4,8 @@ import {
   brassScaleRelative,
   exponentialScaleAbsolute,
   exponentialScaleRelative,
+  linearScaleAbsolute,
+  linearScaleRelative,
 } from './scale';
 
 interface Params {
@@ -30,6 +32,10 @@ export function update(message: Msg, params?: Params): Model {
     case 'UPDATE_SCALE':
       if (window.Model.ratio === 0) {
         update(Msg.UpdateWithBrassScale);
+      } else if (window.Model.ratio === 0.25) {
+        update(Msg.UpdateWithLinearScale);
+      } else if (window.Model.ratio === 0.5) {
+        update(Msg.UpdateWithLinearScale);
       } else {
         update(Msg.UpdateWithExponentialScale);
       }
@@ -54,6 +60,21 @@ export function update(message: Msg, params?: Params): Model {
       ratio = window.Model.ratio;
       relativeScale = exponentialScaleRelative(baseSize, ratio);
       absoluteScale = exponentialScaleAbsolute(baseSize, ratio);
+      window.Model.relativeScale = relativeScale;
+      window.Model.absoluteScale = absoluteScale;
+
+      Object.keys(relativeScale).map(key => {
+        dom.root.style.setProperty(`--space-${key}`, `${relativeScale[key]}rem`);
+      });
+
+      update(Msg.UpdateDisplay);
+      break;
+
+    case 'UPDATE_WITH_LINEAR_SCALE':
+      baseSize = window.Model.baseSize;
+      ratio = window.Model.ratio;
+      relativeScale = linearScaleRelative(baseSize, ratio);
+      absoluteScale = linearScaleAbsolute(baseSize, ratio);
       window.Model.relativeScale = relativeScale;
       window.Model.absoluteScale = absoluteScale;
 
