@@ -13,8 +13,7 @@ interface DomElements {
   relativeDisplays: HTMLLIElement[];
   absoluteDisplays: HTMLLIElement[];
   baseSizeScale: HTMLInputElement;
-  exponentialToggles: HTMLInputElement[];
-  brassToggle: HTMLInputElement;
+  scaleToggles: HTMLInputElement[];
 }
 
 interface Model {
